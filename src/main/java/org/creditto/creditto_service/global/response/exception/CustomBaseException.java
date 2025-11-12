@@ -1,7 +1,7 @@
-package org.creditto.credittoService.global.response.exception;
+package org.creditto.creditto_service.global.response.exception;
 
 import lombok.Getter;
-import org.creditto.credittoService.global.response.error.ErrorCode;
+import org.creditto.creditto_service.global.response.error.ErrorCode;
 
 /**
  * 예측 가능하고 정형화된 에러를 처리하기 위한 비즈니스 예외 클래스

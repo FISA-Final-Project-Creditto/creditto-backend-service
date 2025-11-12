@@ -1,4 +1,4 @@
-package org.creditto.credittoService;
+package org.creditto.creditto_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

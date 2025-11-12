@@ -1,6 +1,6 @@
-package org.creditto.credittoService.global.response.error;
+package org.creditto.creditto_service.global.response.error;
 
-public abstract class ErrorMessage {
+public final class ErrorMessage {
 
     /**
      * NOT FOUND - 조회 실패

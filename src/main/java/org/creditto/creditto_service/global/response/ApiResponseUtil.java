@@ -1,9 +1,9 @@
-package org.creditto.credittoService.global.response;
+package org.creditto.creditto_service.global.response;
 
-import org.creditto.credittoService.global.response.error.ErrorCode;
+import org.creditto.creditto_service.global.response.error.ErrorCode;
 import org.springframework.http.ResponseEntity;
 
-public class ApiResponseUtil {
+public final class ApiResponseUtil {
     public static ResponseEntity<BaseResponse<?>> success(final SuccessCode successCode) {
         return ResponseEntity.status(successCode.getHttpStatus())
                 .body(BaseResponse.of(successCode));

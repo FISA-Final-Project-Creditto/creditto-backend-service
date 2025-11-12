@@ -1,4 +1,4 @@
-package org.creditto.credittoService;
+package org.creditto.creditto_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

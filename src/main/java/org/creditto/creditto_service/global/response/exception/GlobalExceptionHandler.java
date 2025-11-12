@@ -1,11 +1,11 @@
-package org.creditto.credittoService.global.response.exception;
+package org.creditto.creditto_service.global.response.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
-import org.creditto.credittoService.global.response.ApiResponseUtil;
-import org.creditto.credittoService.global.response.BaseResponse;
-import org.creditto.credittoService.global.response.error.ErrorBaseCode;
+import org.creditto.creditto_service.global.response.ApiResponseUtil;
+import org.creditto.creditto_service.global.response.BaseResponse;
+import org.creditto.creditto_service.global.response.error.ErrorBaseCode;
 import org.springframework.core.NestedExceptionUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.TransactionSystemException;
@@ -101,7 +101,7 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * 409, 500 - TransactionSystemException, ConstraintViolationException
+     * 400, 500 - TransactionSystemException, ConstraintViolationException
      * 예외 내용 : 트랜잭션 관련 에러
      */
     @ExceptionHandler(TransactionSystemException.class)
@@ -123,12 +123,17 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<BaseResponse<?>> handleServerException(final Exception e) {
-        logWarn(e);
+        logError(e);
         return ApiResponseUtil.failure(ErrorBaseCode.INTERNAL_SERVER_ERROR);
     }
 
 
     private void logWarn(Exception e) {
         log.warn("[{}]: message={}", e.getClass().getSimpleName(), e.getMessage(), e);
+    }
+
+
+    private void logError(Exception e) {
+        log.error("[{}]: message={}", e.getClass().getSimpleName(), e.getMessage(), e);
     }
 }

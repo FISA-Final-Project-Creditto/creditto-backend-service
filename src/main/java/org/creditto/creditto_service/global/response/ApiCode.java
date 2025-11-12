@@ -1,4 +1,4 @@
-package org.creditto.credittoService.global.response;
+package org.creditto.creditto_service.global.response;
 
 import org.springframework.http.HttpStatus;
 

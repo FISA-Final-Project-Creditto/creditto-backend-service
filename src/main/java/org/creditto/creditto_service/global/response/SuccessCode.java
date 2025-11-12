@@ -1,4 +1,4 @@
-package org.creditto.credittoService.global.response;
+package org.creditto.creditto_service.global.response;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -12,12 +12,12 @@ public enum SuccessCode implements ApiCode{
     /**
      * 200 OK
      */
-    OK(HttpStatus.OK, 200, "요청이 성공했습니다."),
+    OK(HttpStatus.OK, 200, "요청이 성공적으로 처리되었습니다."),
 
     /**
      * 201 CREATED
      */
-    CREATED(HttpStatus.CREATED, 201, "요청이 성공했습니다.");
+    CREATED(HttpStatus.CREATED, 201, "리소스가 성공적으로 생성되었습니다.");
 
     private final HttpStatus httpStatus;
     private final int code;

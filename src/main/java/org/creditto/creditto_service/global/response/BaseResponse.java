@@ -1,4 +1,4 @@
-package org.creditto.credittoService.global.response;
+package org.creditto.creditto_service.global.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -30,13 +30,13 @@ public class BaseResponse<T> {
                 .build();
     }
 
-    public static <T> BaseResponse<?> of(SuccessCode successCode, T data) {
-        return BaseResponse.builder()
-                .code(successCode.getCode())
-                .message(successCode.getMessage())
-                .data(data)
-                .build();
-    }
+        public static <T> BaseResponse<T> of(SuccessCode successCode, T data) {
+            return BaseResponse.<T>builder()
+                    .code(successCode.getCode())
+                    .message(successCode.getMessage())
+                    .data(data)
+                    .build();
+        }
 
     // Error 메시지 전송시
     public static BaseResponse<?> of(final int code, final String message) {
