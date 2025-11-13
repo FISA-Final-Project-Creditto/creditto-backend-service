@@ -14,25 +14,11 @@ import java.util.Optional;
 public interface ConsentDefinitionRepository extends JpaRepository<ConsentDefinition, Long> {
 
     // Code + Version 으로 특정 버전 조회
-    Optional<ConsentDefinition> findByCodeAndVersion(String code, Integer version);
+    Optional<ConsentDefinition> findByConsentCodeAndConsentDefVer(String consentCode, Integer consentDefVer);
 
-    // Code 기준 동의서 최신 버전 1개 조회
-    @Query("""
-            SELECT d
-            FROM ConsentDefinition d
-            WHERE d.code = :code
-            ORDER BY d.version DESC
-            """)
-    Optional<ConsentDefinition> findLatestByCode(String code);
+    // Code 기준 동의서 최신 버전 1개 조회 (JPA Derived Query)
+    Optional<ConsentDefinition> findTopByConsentCodeOrderByConsentDefVerDesc(String consentCode);
 
-    // Code 기준 동의서 최신 목록 조회
-    @Query("""
-            SELECT d
-            FROM ConsentDefinition d
-            WHERE d.code = :code
-            ORDER BY d.version DESC
-            """)
-    List<ConsentDefinition> findAllVersionByCode(@Param("code") String code);
 
     // 현재 유효한 동의서 목록 조회
     @Query("""
@@ -47,10 +33,10 @@ public interface ConsentDefinitionRepository extends JpaRepository<ConsentDefini
     @Query("""
             SELECT d
             FROM ConsentDefinition d
-            WHERE d.code = :code
+            WHERE d.consentCode = :code
                 AND d.validFrom <= :now
                 AND (d.validTo IS NULL OR d.validTo >= :now)
-            ORDER BY d.version DESC
+            ORDER BY d.consentDefVer DESC
             LIMIT 1
             """)
     Optional<ConsentDefinition> findLatestActiveDefinitionByCode(@Param("code") String code, @Param("now") LocalDateTime now);

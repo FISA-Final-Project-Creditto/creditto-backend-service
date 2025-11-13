@@ -17,9 +17,9 @@ public interface ConsentRecordRepository extends JpaRepository<ConsentRecord, Lo
             SELECT r
             FROM ConsentRecord r
             JOIN r.consentDefinition d
-            WHERE r.client.id = :clientId
-                AND d.code = :code
-            ORDER BY r.consentAt DESC
+            WHERE r.clientId = :clientId
+                AND d.consentCode = :code
+            ORDER BY r.consentDate DESC
             LIMIT 1
             """)
     Optional<ConsentRecord> findLatestByClientAndCode(@Param("clientId") String clientId, @Param("code") String code);
@@ -28,10 +28,9 @@ public interface ConsentRecordRepository extends JpaRepository<ConsentRecord, Lo
     @Query("""
             SELECT r
             FROM ConsentRecord r
-            WHERE r.client.id = :clientId
+            WHERE r.clientId = :clientId
                 AND r.consentDefinition.id = :definitionId
-            ORDER BY r.consentAt DESC
-            LIMIT 1
+            ORDER BY r.consentDate DESC
             """)
     Optional<ConsentRecord> findLatestByClientAndDefinition(@Param("clientId") String clientId, @Param("definitionId") Long definitionId);
 

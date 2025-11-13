@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.creditto.creditto_service.global.common.BaseEntity;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity

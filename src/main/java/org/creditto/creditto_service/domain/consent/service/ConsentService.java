@@ -86,6 +86,12 @@ public class ConsentService {
                 .collect(Collectors.toList());
     }
 
+    // 특정 코드의 동의서 최신 버전 조회
+    private ConsentDefinition getLatestDefinition(String consentCode) {
+        return definitionRepository.findTopByConsentCodeOrderByConsentDefVerDesc(consentCode)
+                .orElseThrow(() -> new CustomBaseException(ErrorBaseCode.NOT_FOUND_DEFINITION));
+    }
+
     /**
      * 특정 사용자의 전체 동의 기록을 조회
      * N+1 문제를 방지하기 위해 Fetch Join을 사용
@@ -113,14 +119,7 @@ public class ConsentService {
         return recordRepository.findLatestByClientAndCode(clientId, code)
                 .map(r ->
                         r.getConsentRecVer().equals(latestDefinition.getConsentDefVer()) &&
-                        r.getConsentStatus() ==  ConsentStatus.AGREE
+                        r.getConsentStatus() == ConsentStatus.AGREE
                 ).orElse(false);
-    }
-
-
-    // 특정 코드의 동의서 최신 버전 조회
-    private ConsentDefinition getLatestDefinition(String consentCode) {
-        return definitionRepository.findLatestByCode(consentCode)
-                .orElseThrow(() -> new CustomBaseException(ErrorBaseCode.NOT_FOUND_DEFINITION));
     }
 }

@@ -1,6 +1,5 @@
 package org.creditto.creditto_service.domain.consent.controller;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.creditto.creditto_service.domain.consent.dto.ConsentAgreeReq;
 import org.creditto.creditto_service.domain.consent.dto.ConsentDefinitionRes;
@@ -20,7 +19,7 @@ import java.util.List;
  * 클라이언트의 동의 및 철회, 동의서 조회 등의 기능을 제공
  */
 @RestController
-@RequestMapping("/api/consent")
+@RequestMapping("/api/consents")
 @RequiredArgsConstructor
 public class ConsentController {
 
@@ -44,7 +43,7 @@ public class ConsentController {
      * @return 생성된 동의 기록 정보를 포함하는 응답 엔티티
      */
     @PostMapping("/agree")
-    public ResponseEntity<BaseResponse<?>> agreeConsent(@Valid @RequestBody ConsentAgreeReq req) {
+    public ResponseEntity<BaseResponse<?>> agreeConsent(@RequestBody ConsentAgreeReq req) {
         ConsentRecordRes record = consentService.agree(req);
         return ApiResponseUtil.success(SuccessCode.CREATED, record);
     }
@@ -56,7 +55,7 @@ public class ConsentController {
      * @return 철회 처리된 동의 기록 정보를 포함하는 응답 엔티티
      */
     @PostMapping("/withdraw")
-    public ResponseEntity<BaseResponse<?>> withdrawConsent(@Valid @RequestBody ConsentWithdrawReq req) {
+    public ResponseEntity<BaseResponse<?>> withdrawConsent(@RequestBody ConsentWithdrawReq req) {
         ConsentRecordRes record = consentService.withdraw(req);
         return ApiResponseUtil.success(SuccessCode.OK, record);
     }
