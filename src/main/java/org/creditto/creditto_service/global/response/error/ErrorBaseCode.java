@@ -47,6 +47,8 @@ public enum ErrorBaseCode implements ErrorCode {
     NOT_FOUND_API(HttpStatus.NOT_FOUND, 404, "잘못된 API 요청입니다."),
     NOT_FOUND_ENTITY(HttpStatus.NOT_FOUND, 404, "대상을 찾을 수 없습니다."),
     NOT_FOUND_ACCOUNT(HttpStatus.NOT_FOUND, 40401, "해당 계좌를 찾을 수 없습니다."),
+    NOT_FOUND_DEFINITION(HttpStatus.NOT_FOUND, 40402, "해당 동의서를 찾을 수 없습니다."),
+    NOT_FOUND_RECORD(HttpStatus.NOT_FOUND, 40403, "해당 동의 이력을 찾을 수 없습니다."),
     REGULAR_REMITTANCE_NOT_FOUND(HttpStatus.NOT_FOUND, 40411, "해당 자동이체 내역을 찾을 수 없습니다."),
 
     /**
